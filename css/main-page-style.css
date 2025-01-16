@@ -1,0 +1,117 @@
+header .search-bar {
+    display: flex;
+    gap: 10px;
+}
+
+header .search-bar input {
+    width: 300px;
+    padding: 8px;
+    font-size: 1rem;
+}
+
+header .search-bar button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+.sidebar h3 {
+    margin-bottom: 15px;
+}
+
+.sidebar .filter {
+    margin-bottom: 20px;
+}
+
+.sidebar input[type="number"], .sidebar input[type="checkbox"] {
+    margin-top: 5px;
+}
+
+.sidebar .apply-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+.catalog {
+    flex: 1;
+    padding: 20px;
+}
+
+.catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.catalog-header select {
+    padding: 5px;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: 150px; /* Fixed height for images */
+    object-fit: cover; /* Ensure the image covers the fixed height */
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ellipsis */
+    margin-bottom: 10px;
+}
+
+.product-card .price {
+    color: red;
+    font-weight: bold;
+}
+
+.product-card .old-price {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.product-card button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.load-more {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
