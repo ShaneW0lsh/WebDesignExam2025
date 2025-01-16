@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="css/bucket-page-style.css">
+    <link rel="stylesheet" href="css/base-style.css">
+    <script src="js/bucket.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Название компании</div>
+        <div class="icons">
+            <a href="index.html"><img src="" alt="Главная"></a>
+            <a href="lk.html"><img src="" alt="Личный кабинет"></a>
+        </div>
+    </header>
+
+    <div class="notification">Текст сообщения</div>
+
+    <div class="cart-container">
+        <h1 class="cart-title">Корзина</h1>
+        <div class="cart-grid">
+        </div>
+
+        <div class="checkout-form">
+            <h2>Оформление заказа</h2>
+            <form id="upload-form">
+                <label>
+                    Имя
+                    <input type="text" name="full_name" placeholder="Иванов Иван" required>
+                </label>
+                <label>
+                    Номер телефона
+                    <input type="text" name="phone" placeholder="+74952230523" required>
+                </label>
+                <div>
+                    <label>
+                        Email
+                        <input type="email" name="email" placeholder="example@mospolytech.ru" required>
+                    </label>
+                    <div class="subscribe-wrapper">
+                        <input type="checkbox" name="subscribe" id="subscribe">
+                        <label for="subscribe">Подписаться на рассылку</label>
+                    </div>
+                </div>
+                <label>
+                    Адрес доставки
+                    <input type="text" name="delivery_address" placeholder="ул. Большая Семёновская, 38" required>
+                </label>
+                <label>
+                    Дата доставки
+                    <input type="date" name="delivery_date" required>
+                </label>
+                <label>
+                    Временной интервал доставки
+                    <select name="delivery_interval" required>
+                        <option>18:00-22:00</option>
+                        <option>10:00-14:00</option>
+                        <option>14:00-18:00</option>
+                    </select>
+                </label>
+                <label>
+                    Комментарий
+                    <textarea name="comment" rows="4"></textarea>
+                </label>
+                <div>
+                    <div class="checkout-summary">
+                        Итоговая стоимость: 0₽
+                    </div>
+                    <div class="buttons-wrapper">
+                        <button type="reset">Сбросить</button>
+                        <button type="submit">Оформить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Название компании
+    </footer>
+</body>
+</html>
