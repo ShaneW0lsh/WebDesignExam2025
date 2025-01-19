@@ -15,27 +15,20 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #f4f4f4;
+    background-color: #112229;
     padding: 10px 20px;
 }
 
 header .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    color: #fbe9d0;
 }
 
 header .search-bar input {
     width: 300px;
     padding: 8px;
     font-size: 1rem;
-}
-
-header .search-bar button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
 }
 
 header .icons {
@@ -54,11 +47,6 @@ header .icons {
 .container {
     display: flex;
     flex: 1;
-}
-
-.catalog {
-    flex: 1;
-    padding: 20px;
 }
 
 .catalog-header {

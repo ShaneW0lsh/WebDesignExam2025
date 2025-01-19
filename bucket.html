@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Корзина</title>
-    <link rel="stylesheet" href="css/bucket-page-style.css">
     <link rel="stylesheet" href="css/base-style.css">
-    <script src="js/bucket.js"></script>
+    <link rel="stylesheet" href="css/bucket-page-style.css">
 </head>
 <body>
     <header>
-        <div class="logo">Название компании</div>
+        <div class="logo">EasyBuy</div>
         <div class="icons">
-            <a href="index.html"><img src="" alt="Главная"></a>
-            <a href="lk.html"><img src="" alt="Личный кабинет"></a>
+            <a href="index.html">🏠</a>
+            <a href="lk.html">👤</a>
         </div>
     </header>
 
-    <div class="notification">Текст сообщения</div>
+    <div class="notification" hidden>Текст сообщения</div>
 
     <div class="cart-container">
         <h1 class="cart-title">Корзина</h1>
@@ -51,11 +50,11 @@
                 </label>
                 <label>
                     Дата доставки
-                    <input type="date" name="delivery_date" required>
+                    <input id="delivery-date" type="date" name="delivery_date" required>
                 </label>
                 <label>
                     Временной интервал доставки
-                    <select name="delivery_interval" required>
+                    <select id="delivery-interval" name="delivery_interval" required>
                         <option>18:00-22:00</option>
                         <option>10:00-14:00</option>
                         <option>14:00-18:00</option>
@@ -78,8 +77,9 @@
         </div>
     </div>
 
+    <script src="js/bucket.js"></script>
     <footer>
-        © 2025 Название компании
+        © 2025 EasyBuy
     </footer>
 </body>
 </html>

@@ -1,4 +1,6 @@
 let bucketProductIdsList = new Set(JSON.parse(localStorage.getItem('productIds'))) || [];
+const deliveryDate = document.getElementById("delivery-date");
+const deliveryInterval = document.getElementById("delivery-interval");
 let bucketProductList = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -19,20 +21,45 @@ document.addEventListener("DOMContentLoaded", async () => {
         const card = document.createElement("div");
         card.className = "product-card";
         card.dataset.productId = product.id;
-        card.innerHTML = `
-            <div class="cart-item">
-                <img src="${product.image_url}" alt="Изображение товара">
-                <h3>${product.name}</h3>
-                <div class="rating">${product.rating} ★★★★☆</div>
-                <div class="price">
-                    <span class="old-price">${product.actual_price}</span>
-                    <span class="new-price">${product.discount_price}</span>
+
+        const starsNum = Math.floor(product.rating);
+        let stars = '';
+        for (let i = 0; i < starsNum; ++i) {
+            stars += '★';
+        }
+        for (let i = 0; i < 5 - starsNum; ++i) {
+            stars += '☆';
+        }
+        if (product.discount_price !== product.actual_price) {
+            card.innerHTML = `
+                <div class="cart-item">
+                    <img src="${product.image_url}" alt="Изображение товара">
+                    <h3>${product.name}</h3>
+                    <div class="rating">${product.rating} ${stars}</div>
+                    <div class="price">
+                        <span class="new-price">${product.discount_price} руб.</span>
+                        <span class="old-price">${product.actual_price} руб.</span>
+                    </div>
+                    <button onclick="handleDeleteProductBtn(${product.id})">Удалить</button>
                 </div>
-                <button onclick="handleDeleteProductBtn(${product.id})">Удалить</button>
-            </div>
-        `;
+            `;
+        } else {
+            card.innerHTML = `
+                <div class="cart-item">
+                    <img src="${product.image_url}" alt="Изображение товара">
+                    <h3>${product.name}</h3>
+                    <div class="rating">${product.rating} ${stars}</div>
+                    <div class="price">
+                        <span class="new-price">${product.actual_price} руб.</span>
+                    </div>
+                    <button onclick="handleDeleteProductBtn(${product.id})">Удалить</button>
+                </div>
+            `;
+        }
         return card;
     }
+
+
 
     async function loadProducts() {
         for (const id of bucketProductIdsList) {
@@ -43,6 +70,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         bucketProductList.forEach(product => {
+            if (product.discount_price === null) {
+                product.discount_price = product.actual_price;
+            }
             const productCard = createProductCard(product);
             cartGrid.appendChild(productCard);
         });
@@ -107,11 +137,28 @@ function calculateAndRenderCost() {
         }
     });
 
-    console.log(cost);
+    console.log(deliveryDate);
+    cost += calculateDeliveryCost(deliveryDate.value, deliveryInterval.value);
     const finalCost = document.querySelector('.checkout-summary');
     finalCost.innerText = `Итоговая стоимость: ${cost} руб.`;
 }
 
+function calculateDeliveryCost(date, time) {
+    let deliveryCost = 200;
+    const deliveryDate = new Date(`${date}T${time}`);
+    const day = deliveryDate.getDay();
+    const hours = deliveryDate.getHours();
+
+    if (day === 0 || day === 6) {
+        deliveryCost += 300;
+    }
+
+    if (day >= 1 && day <= 5 && hours >= 18) {
+        deliveryCost += 200;
+    }
+
+    return deliveryCost;
+}
 
 function handleDeleteProductBtn(id) {
     let productIds = new Set(JSON.parse(localStorage.getItem('productIds')) || []);

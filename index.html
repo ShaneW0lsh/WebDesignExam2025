@@ -11,10 +11,13 @@
 </head>
 <body>
     <header>
-        <div class="logo">Логотип</div>
+        <div class="logo">EasyBuy</div>
         <div class="search-bar">
-            <input type="text" placeholder="Введите запрос">
-            <button>Найти</button>
+            <div class="what">
+                <input id="search-input" type="text" placeholder="Введите запрос">
+                <div id="autocomplete-list" class="autocomplete-list"></div>
+            </div>
+            <button id="search-button">Найти</button>
         </div>
         <div class="icons">
             <a href="bucket.html">🛒</a>
@@ -79,7 +82,7 @@
     </div>
 
     <footer>
-        &copy; 2025 Название компании. Все права защищены.
+        &copy; 2025 EasyBuy
     </footer>
 </body>
 </html>
