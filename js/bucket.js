@@ -1,6 +1,7 @@
 let bucketProductIdsList = new Set(JSON.parse(localStorage.getItem('productIds'))) || [];
 const deliveryDate = document.getElementById("delivery-date");
 const deliveryInterval = document.getElementById("delivery-interval");
+const notification = document.querySelector(".notification");
 let bucketProductList = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -104,7 +105,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             localStorage.removeItem("productIds")
             console.log(localStorage.getItem("productIds"));
             console.log('Success:', data);
-            window.location.href = "index.html";
+            showNotification('success', 'type');
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 3000);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -112,14 +116,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     
     function showNotification(message, type) {
-        // notification.textContent = message;
-        // notification.style.display = "block";
-        // notification.className = `notification ${type}`;
-        // setTimeout(() => {
-        //     notification.style.display = "none";
-        // }, 3000);
+        notification.textContent = message;
+        notification.style.display = "block";
+        notification.className = `notification ${type}`;
+        setTimeout(() => {
+            notification.style.display = "none";
+        }, 3000);
         console.log(`notification ${message}`)
     }
+
+    deliveryDate.addEventListener("change", calculateAndRenderCost);
+    deliveryInterval.addEventListener("change", calculateAndRenderCost);
 });
 
 function formatDateTime(date) {
@@ -137,24 +144,24 @@ function calculateAndRenderCost() {
         }
     });
 
-    console.log(deliveryDate);
+    console.log(deliveryDate.value);
+    console.log(deliveryInterval.value);
     cost += calculateDeliveryCost(deliveryDate.value, deliveryInterval.value);
     const finalCost = document.querySelector('.checkout-summary');
     finalCost.innerText = `Итоговая стоимость: ${cost} руб.`;
 }
 
 function calculateDeliveryCost(date, time) {
+    time = time.split('-')[0];
     let deliveryCost = 200;
     const deliveryDate = new Date(`${date}T${time}`);
     const day = deliveryDate.getDay();
     const hours = deliveryDate.getHours();
 
-    if (day === 0 || day === 6) {
-        deliveryCost += 300;
-    }
-
     if (day >= 1 && day <= 5 && hours >= 18) {
         deliveryCost += 200;
+    } else if ((day === 0 || day === 6) && hours >= 18) {
+        deliveryCost += 300;
     }
 
     return deliveryCost;
